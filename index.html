@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Library System — catalog, borrowing, returns, and account services.">
     <meta name="theme-color" content="#214f31">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="canonical" href="https://library-system.online/">
     <title>Library System</title>
     <style>
@@ -260,16 +261,20 @@
       }
 
       .feature-icon {
-        display: grid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 2.4rem;
         height: 2.4rem;
-        place-items: center;
+        line-height: 0;
         color: var(--primary);
         background: oklch(68% 0.14 135 / 0.18);
         border-radius: 0.55rem;
       }
 
       .feature-icon svg {
+        display: block;
+        flex: none;
         width: 1.2rem;
         height: 1.2rem;
       }
@@ -280,7 +285,7 @@
         font-size: 0.92rem;
       }
 
-      .feature span {
+      .feature > div > span {
         display: block;
         margin-top: 0.1rem;
         color: oklch(38% 0.025 145);
@@ -300,15 +305,103 @@
       }
 
       .site-footer a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
         color: var(--primary);
         font-weight: 700;
         text-decoration: none;
+      }
+
+      .site-footer a svg {
+        display: block;
+        flex: none;
+        width: 1rem;
+        height: 1rem;
       }
 
       .site-footer a:hover,
       .site-footer a:focus-visible {
         text-decoration: underline;
         text-underline-offset: 0.2rem;
+      }
+
+      .button-quiet {
+        color: var(--primary);
+        background: transparent;
+        border: 1px solid oklch(38% 0.09 150 / 0.25);
+      }
+
+      .button-quiet:hover,
+      .button-quiet:focus-visible {
+        background: oklch(38% 0.09 150 / 0.08);
+      }
+
+      .button[aria-busy="true"] {
+        opacity: 0.65;
+        pointer-events: none;
+      }
+
+      .status-dialog {
+        width: min(26rem, calc(100% - 2rem));
+        padding: 0;
+        color: var(--base-content);
+        background: transparent;
+        border: 0;
+      }
+
+      .status-dialog::backdrop {
+        background: oklch(20% 0.03 140 / 0.55);
+        backdrop-filter: blur(4px);
+      }
+
+      .status-card {
+        padding: 1.6rem;
+        background: var(--base-100);
+        border: 1px solid oklch(38% 0.09 150 / 0.14);
+        border-radius: var(--radius-box);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .status-icon {
+        display: grid;
+        width: 3rem;
+        height: 3rem;
+        place-items: center;
+        color: oklch(48% 0.17 28);
+        background: oklch(48% 0.17 28 / 0.12);
+        border-radius: 0.75rem;
+      }
+
+      .status-icon svg {
+        width: 1.55rem;
+        height: 1.55rem;
+      }
+
+      .status-card h2 {
+        margin: 1rem 0 0;
+        color: var(--primary);
+        font-size: 1.3rem;
+        line-height: 1.25;
+      }
+
+      .status-card p {
+        margin: 0.55rem 0 0;
+        color: oklch(38% 0.025 145);
+        font-size: 0.9rem;
+      }
+
+      .status-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 1.3rem;
+      }
+
+      .status-actions .button {
+        min-height: 2.65rem;
+        padding: 0.65rem 1rem;
+        font-size: 0.85rem;
       }
 
       @media (max-width: 760px) {
@@ -349,7 +442,7 @@
             <span class="brand-subtitle">Read. Borrow. Return.</span>
           </span>
         </a>
-        <a class="header-link" href="https://ndkc.library-system.online">Open the platform</a>
+        <a class="header-link" href="https://ndkc.library-system.online" data-platform-link>Open the platform</a>
       </header>
 
       <main>
@@ -362,7 +455,7 @@
             online.
           </p>
           <div class="actions">
-            <a class="button button-primary" href="https://ndkc.library-system.online">
+            <a class="button button-primary" href="https://ndkc.library-system.online" data-platform-link>
               Enter the library portal
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M5 12h14M13 6l6 6-6 6"></path>
@@ -418,12 +511,116 @@
 
       <footer class="site-footer">
         <span>&copy; <span id="year">2026</span> Library System</span>
-        <span><a href="https://library-system.online/">library-system.online</a></span>
+        <span>
+          <a href="https://library-system.online/">library-system.online</a>
+          <span aria-hidden="true"> · </span>
+          <a href="https://github.com/mariettanathalievarona/library-system" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path>
+            </svg>
+            View source on GitHub
+          </a>
+        </span>
       </footer>
     </div>
 
+    <dialog class="status-dialog" id="platform-down" aria-labelledby="platform-down-title" aria-describedby="platform-down-message">
+      <div class="status-card">
+        <span class="status-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 9v4"></path>
+            <path d="M12 17h.01"></path>
+            <path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"></path>
+          </svg>
+        </span>
+        <h2 id="platform-down-title">The library platform is down</h2>
+        <p id="platform-down-message">We could not reach the library portal. Please try again in a few minutes.</p>
+        <div class="status-actions">
+          <button class="button button-primary" id="platform-retry" type="button">Try again</button>
+          <button class="button button-quiet" id="platform-close" type="button">Close</button>
+        </div>
+      </div>
+    </dialog>
+
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      const platformDialog = document.getElementById("platform-down");
+      const platformRetry = document.getElementById("platform-retry");
+      const platformClose = document.getElementById("platform-close");
+      const checkTimeoutMs = 8000;
+      let pendingPlatformUrl = null;
+
+      async function isPlatformOnline() {
+        const controller = new AbortController();
+        const timeoutId = window.setTimeout(() => controller.abort(), checkTimeoutMs);
+
+        try {
+          await fetch(`https://ndkc.library-system.online/?availability-check=${Date.now()}`, {
+            method: "HEAD",
+            mode: "no-cors",
+            cache: "no-store",
+            credentials: "omit",
+            redirect: "follow",
+            signal: controller.signal,
+          });
+          return true;
+        } catch (error) {
+          return false;
+        } finally {
+          window.clearTimeout(timeoutId);
+        }
+      }
+
+      function openPlatformDialog() {
+        if (typeof platformDialog.showModal === "function") {
+          if (!platformDialog.open) platformDialog.showModal();
+        } else {
+          platformDialog.setAttribute("open", "");
+        }
+      }
+
+      function closePlatformDialog() {
+        if (typeof platformDialog.close === "function") {
+          platformDialog.close();
+        } else {
+          platformDialog.removeAttribute("open");
+        }
+      }
+
+      async function openPlatform(url, trigger) {
+        if (trigger.getAttribute("aria-busy") === "true") return;
+
+        trigger.setAttribute("aria-busy", "true");
+        const online = await isPlatformOnline();
+        trigger.removeAttribute("aria-busy");
+
+        if (online) {
+          window.location.assign(url);
+          return;
+        }
+
+        pendingPlatformUrl = url;
+        openPlatformDialog();
+      }
+
+      document.querySelectorAll("[data-platform-link]").forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          openPlatform(link.href, link);
+        });
+      });
+
+      platformClose.addEventListener("click", closePlatformDialog);
+      platformRetry.addEventListener("click", () => {
+        const url = pendingPlatformUrl;
+        closePlatformDialog();
+        if (url) openPlatform(url, platformRetry);
+      });
+
+      platformDialog.addEventListener("click", (event) => {
+        if (event.target === platformDialog) closePlatformDialog();
+      });
     </script>
   </body>
 </html>
