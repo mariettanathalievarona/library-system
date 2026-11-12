@@ -513,9 +513,13 @@
         white-space: nowrap;
       }
 
+      .screen-frame picture,
       .screen-frame img {
         display: block;
         width: 100%;
+      }
+
+      .screen-frame img {
         height: auto;
         background: var(--base-100);
       }
@@ -799,18 +803,21 @@
 
             <figure class="screen-card screen-card--mobile">
               <div class="screen-frame screen-frame--mobile">
-                <img
-                  src="assets/screenshots/platform-mobile.png"
-                  width="780"
-                  height="1864"
-                  loading="lazy"
-                  decoding="async"
-                  alt="NDKC Library System book catalog on a phone, showing the search field, available copies, and a borrow request button."
-                >
+                <picture>
+                  <source media="(prefers-reduced-motion: reduce)" srcset="assets/screenshots/platform-mobile.png">
+                  <img
+                    src="assets/screenshots/platform-mobile.gif"
+                    width="320"
+                    height="765"
+                    loading="lazy"
+                    decoding="async"
+                    alt="Animated preview of the NDKC Library System book catalog scrolling on a phone, showing search, available copies, and borrow request buttons."
+                  >
+                </picture>
               </div>
               <figcaption class="screen-cap">
                 <span class="screen-num">03</span>
-                <span class="screen-name">Catalog in your pocket</span>
+                <span class="screen-name">Catalog in motion</span>
                 <span class="screen-tag">Mobile</span>
               </figcaption>
             </figure>

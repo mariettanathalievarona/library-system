@@ -30,7 +30,8 @@ hosts.
 - `index.html` — landing page markup, styles, and the platform availability check.
 - `favicon.svg` — generic book icon from [Heroicons](https://heroicons.com/).
 - `assets/screenshots/` — desktop, tablet, and mobile promotional screenshots of the
-  student portal.
+  student portal. The mobile card loops a GIF, with a static PNG fallback for reduced-motion
+  preferences.
 
 ## Repository
 
