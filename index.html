@@ -404,6 +404,238 @@
         font-size: 0.85rem;
       }
 
+      .screens {
+        padding: clamp(4rem, 8vw, 7rem) 0;
+        color: var(--primary-content);
+        background:
+          radial-gradient(circle at 88% 6%, oklch(82% 0.17 90 / 0.16), transparent 26rem),
+          var(--primary);
+      }
+
+      .screens .shell {
+        width: min(1240px, calc(100% - 2.5rem));
+      }
+
+      .screens-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: clamp(2rem, 5vw, 3.5rem);
+      }
+
+      .screens-eyebrow {
+        margin: 0 0 0.8rem;
+        color: var(--secondary);
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .screens-title {
+        max-width: 16ch;
+        margin: 0;
+        font-family: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+        font-size: clamp(2.3rem, 5vw, 4.5rem);
+        font-weight: 700;
+        letter-spacing: -0.045em;
+        line-height: 0.98;
+      }
+
+      .screens-title em {
+        color: var(--secondary);
+        font-style: italic;
+      }
+
+      .screens-note {
+        max-width: 34ch;
+        margin: 0;
+        color: oklch(92% 0.015 150 / 0.78);
+        font-size: 0.95rem;
+      }
+
+      .screens-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr) minmax(0, 0.72fr);
+        gap: clamp(1rem, 2.5vw, 2rem);
+        align-items: end;
+      }
+
+      .screen-card {
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        gap: 0.9rem;
+        margin: 0;
+      }
+
+      .screen-frame {
+        overflow: hidden;
+        background: var(--neutral);
+        border: 1px solid oklch(98% 0.015 150 / 0.16);
+        border-radius: var(--radius-box);
+        box-shadow: 0 30px 70px -28px oklch(12% 0.04 145 / 0.8);
+      }
+
+      .browser-bar {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.6rem 0.7rem;
+        background: oklch(22% 0.04 145);
+        border-bottom: 1px solid oklch(98% 0.015 150 / 0.12);
+      }
+
+      .browser-dot {
+        width: 0.45rem;
+        height: 0.45rem;
+        background: oklch(68% 0.14 135 / 0.55);
+        border-radius: 50%;
+      }
+
+      .browser-dot:first-child {
+        background: oklch(66% 0.18 28 / 0.7);
+      }
+
+      .browser-dot:nth-child(2) {
+        background: oklch(82% 0.17 90 / 0.75);
+      }
+
+      .browser-url {
+        min-width: 0;
+        margin-left: 0.5rem;
+        overflow: hidden;
+        color: oklch(92% 0.015 150 / 0.62);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.64rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .screen-frame img {
+        display: block;
+        width: 100%;
+        height: auto;
+        background: var(--base-100);
+      }
+
+      .screen-frame--tablet {
+        padding: 0.5rem;
+        background: oklch(15% 0.035 145);
+        border-radius: 1.6rem;
+      }
+
+      .screen-frame--tablet img {
+        border-radius: 1.05rem;
+      }
+
+      .screen-frame--mobile {
+        padding: 0.45rem;
+        background: oklch(15% 0.035 145);
+        border-radius: 2rem;
+      }
+
+      .screen-frame--mobile img {
+        border-radius: 1.5rem;
+      }
+
+      .screen-cap {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0.25rem 0.7rem;
+        padding: 0 0.15rem;
+      }
+
+      .screen-num {
+        color: var(--secondary);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.7rem;
+        font-weight: 700;
+      }
+
+      .screen-name {
+        color: var(--primary-content);
+        font-size: 0.95rem;
+        font-weight: 800;
+      }
+
+      .screen-tag {
+        margin-left: auto;
+        color: oklch(92% 0.015 150 / 0.58);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .screens-cta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: clamp(2rem, 4vw, 3rem);
+        padding-top: 1.35rem;
+        border-top: 1px solid oklch(98% 0.015 150 / 0.16);
+      }
+
+      .screens-cta p {
+        max-width: 44ch;
+        margin: 0;
+        color: oklch(92% 0.015 150 / 0.72);
+        font-size: 0.88rem;
+      }
+
+      @media (max-width: 900px) {
+        .screens-head {
+          align-items: start;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .screens-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .screen-card--desktop {
+          grid-column: 1 / -1;
+        }
+
+        .screen-card--tablet {
+          grid-column: 1;
+        }
+
+        .screen-card--mobile {
+          grid-column: 2;
+          justify-self: center;
+          width: min(100%, 22rem);
+        }
+      }
+
+      @media (max-width: 620px) {
+        .screens-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .screen-card--desktop,
+        .screen-card--tablet,
+        .screen-card--mobile {
+          grid-column: 1;
+          width: 100%;
+        }
+
+        .screen-card--mobile {
+          justify-self: center;
+          width: min(100%, 21rem);
+        }
+
+        .screen-tag {
+          margin-left: 0;
+        }
+      }
+
       @media (max-width: 760px) {
         main {
           grid-template-columns: 1fr;
@@ -508,6 +740,93 @@
           </ul>
         </aside>
       </main>
+
+      <section class="screens" aria-labelledby="screens-title">
+        <div class="shell">
+          <div class="screens-head">
+            <div>
+              <p class="screens-eyebrow">A look inside</p>
+              <h2 class="screens-title" id="screens-title">One library. <em>Every screen.</em></h2>
+            </div>
+            <p class="screens-note">
+              The same account follows students from the classroom desktop to the library
+              tablet, and especially to the phone in their pocket.
+            </p>
+          </div>
+
+          <div class="screens-grid">
+            <figure class="screen-card screen-card--desktop">
+              <div class="screen-frame screen-frame--desktop">
+                <div class="browser-bar" aria-hidden="true">
+                  <span class="browser-dot"></span>
+                  <span class="browser-dot"></span>
+                  <span class="browser-dot"></span>
+                  <span class="browser-url">ndkc.library-system.online</span>
+                </div>
+                <img
+                  src="assets/screenshots/platform-desktop.png"
+                  width="2880"
+                  height="2200"
+                  loading="lazy"
+                  decoding="async"
+                  alt="NDKC Library System student dashboard on a desktop browser, showing books borrowed, due dates, overdue items, and quick actions."
+                >
+              </div>
+              <figcaption class="screen-cap">
+                <span class="screen-num">01</span>
+                <span class="screen-name">Dashboard at a glance</span>
+                <span class="screen-tag">Desktop</span>
+              </figcaption>
+            </figure>
+
+            <figure class="screen-card screen-card--tablet">
+              <div class="screen-frame screen-frame--tablet">
+                <img
+                  src="assets/screenshots/platform-tablet.png"
+                  width="1668"
+                  height="2400"
+                  loading="lazy"
+                  decoding="async"
+                  alt="NDKC Library System student dashboard on a tablet, with sidebar navigation, quick actions, and recent borrowing activity."
+                >
+              </div>
+              <figcaption class="screen-cap">
+                <span class="screen-num">02</span>
+                <span class="screen-name">Navigation and activity</span>
+                <span class="screen-tag">Tablet</span>
+              </figcaption>
+            </figure>
+
+            <figure class="screen-card screen-card--mobile">
+              <div class="screen-frame screen-frame--mobile">
+                <img
+                  src="assets/screenshots/platform-mobile.png"
+                  width="780"
+                  height="1864"
+                  loading="lazy"
+                  decoding="async"
+                  alt="NDKC Library System book catalog on a phone, showing the search field, available copies, and a borrow request button."
+                >
+              </div>
+              <figcaption class="screen-cap">
+                <span class="screen-num">03</span>
+                <span class="screen-name">Catalog in your pocket</span>
+                <span class="screen-tag">Mobile</span>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="screens-cta">
+            <p>Sign in with the school ID issued by the library and pick up right where you left off.</p>
+            <a class="button button-secondary" href="https://ndkc.library-system.online" data-platform-link>
+              Open the platform
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
 
       <footer class="site-footer">
         <span>&copy; <span id="year">2026</span> Library System</span>
