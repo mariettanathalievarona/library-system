@@ -721,7 +721,7 @@
                 <path d="M5 12h14M13 6l6 6-6 6"></path>
               </svg>
             </a>
-            <a class="button button-secondary" href="https://ndkc.library-system.online/patrons/books/">
+            <a class="button button-secondary" href="https://ndkc.library-system.online/patrons/books/" data-platform-link>
               Browse the catalog
             </a>
           </div>
@@ -917,6 +917,7 @@
       const platformDialog = document.getElementById("platform-down");
       const platformRetry = document.getElementById("platform-retry");
       const platformClose = document.getElementById("platform-close");
+      const platformHealthUrl = "https://ndkc.library-system.online/healthz/";
       const checkTimeoutMs = 8000;
       let pendingPlatformUrl = null;
 
@@ -925,15 +926,24 @@
         const timeoutId = window.setTimeout(() => controller.abort(), checkTimeoutMs);
 
         try {
-          await fetch(`https://ndkc.library-system.online/?availability-check=${Date.now()}`, {
-            method: "HEAD",
-            mode: "no-cors",
+          // This must be a CORS request, not no-cors: an opaque response looks
+          // successful even when Cloudflare serves a custom 5xx error page.
+          const response = await fetch(`${platformHealthUrl}?check=${Date.now()}`, {
+            method: "GET",
+            mode: "cors",
             cache: "no-store",
             credentials: "omit",
             redirect: "follow",
             signal: controller.signal,
           });
-          return true;
+
+          if (!response.ok) return false;
+
+          const contentType = response.headers.get("content-type") || "";
+          if (!contentType.includes("application/json")) return false;
+
+          const health = await response.json();
+          return health.status === "ok" && health.service === "ndkc-library-system";
         } catch (error) {
           return false;
         } finally {

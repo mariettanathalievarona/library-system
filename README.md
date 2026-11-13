@@ -5,7 +5,14 @@ The public landing page for the Library System. It is hosted with GitHub Pages a
 
 The page links to the Django library platform at
 [ndkc.library-system.online](https://ndkc.library-system.online). Before opening the platform,
-it checks whether the host is reachable and shows an accessible dialog if the platform is down.
+it calls the public `/healthz/` endpoint and requires a `200` JSON response identifying the
+`ndkc-library-system` service. If the endpoint is unreachable or returns anything else, the
+page shows an accessible dialog instead of continuing to the platform.
+
+The check uses a CORS request rather than `no-cors`. An opaque `no-cors` response resolves for
+any HTTP response, including Cloudflare's custom 5xx error page, which would incorrectly mark
+the platform as online. Cloudflare error pages either fail CORS or return a non-JSON body, so
+they are treated as offline.
 
 ## Local preview
 
